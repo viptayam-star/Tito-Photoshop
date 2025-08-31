@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tayam | Freelance Designer</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <!-- React and Babel Scripts -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <style>
+        :root {
+            --primary-color: #FFFFFF;
+            --secondary-color: #F8F9FA;
+            --accent-color: #8D99AE;
+            --text-color: #2B2D42;
+            --card-color: #FFFFFF;
+            --border-color: #DEE2E6;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--primary-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            transition: background-color 0.3s;
+        }
+
+        /* Style for when sidebar is open */
+        body.sidebar-open {
+            overflow: hidden;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: auto;
+            padding: 0 2rem;
+            overflow: hidden;
+        }
+
+        header {
+            background: var(--primary-color);
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            width: 100%;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 50px; 
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            align-items: center;
+        }
+
+        nav ul li {
+            margin-left: 25px;
+        }
+
+        nav a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--accent-color);
+        }
+
+        .hero {
+            background: var(--secondary-color);
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero h1 span {
+            color: var(--accent-color);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: auto;
+        }
+
+        .section {
+            padding: 4rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            font-weight: 600;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .portfolio-item {
+            background: var(--card-color);
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.07);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            overflow: hidden;
+        }
+
+        .portfolio-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .portfolio-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .portfolio-content {
+            padding: 1.5rem;
+        }
+
+        .portfolio-item h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-color);
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--accent-color);
+            color: var(--primary-color);
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 1rem;
+        }
+
+        .btn:hover {
+            background-color: #72819a;
+            transform: scale(1.05);
+        }
+
+        .cta-section {
+            background: var(--secondary-color);
+            text-align: center;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .contact-section {
+            text-align: center;
+        }
+
+        .contact-links a {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-size: 1.2rem;
+            margin: 0 1rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .contact-links a:hover {
+            color: var(--text-color);
+        }
+        
+        footer {
+            background: var(--secondary-color);
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 2rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        /* Sidebar Styles */
+        #sidebar-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            visibility: hidden;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+        }
+
+        #sidebar {
+            position: fixed;
+            top: 0;
+            right: -400px; /* Start off-screen */
+            width: 100%;
+            max-width: 400px;
+            height: 100%;
+            background: var(--primary-color);
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            z-index: 1001;
+            transition: right 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            padding: 2rem;
+            overflow-y: auto;
+        }
+        
+        body.sidebar-open #sidebar-overlay {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        body.sidebar-open #sidebar {
+            right: 0;
+        }
+
+        #close-sidebar {
+            position: absolute;
+            top: 1rem;
+            right: 1.5rem;
+            background: none;
+            border: none;
+            font-size: 2.5rem;
+            color: var(--text-color);
+            cursor: pointer;
+            line-height: 1;
+        }
+        
+        .sidebar-title {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            margin-top: 1rem;
+        }
+
+        .plan {
+            background: var(--secondary-color);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .plan h3 {
+            font-size: 1.5rem;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+        
+        .plan ul {
+            list-style: none;
+            margin-bottom: 1rem;
+        }
+        
+        .plan ul li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .price {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        
+        .price s {
+            font-size: 1rem;
+            font-weight: 400;
+            color: #ef233c;
+            margin-right: 0.5rem;
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="#home"><img src="logo.png" alt="Tayam Logo"></a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#portfolio">Portfolio</a></li>
+                    <li><a id="open-sidebar">Subscription</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <section id="home" class="hero">
+            <div class="container">
+                <h1>Creative Designing Services for <span>Your Business</span></h1>
+                <p>I build modern, effective, and visually stunning designs that help your brand stand out.</p>
+            </div>
+        </section>
+
+        <section id="portfolio" class="section">
+            <div class="container">
+                <h2 class="section-title">Design Samples</h2>
+                <div id="portfolio-root"></div>
+            </div>
+        </section>
+
+        <section class="section cta-section">
+            <div class="container">
+                <p>All types of social media advertisements are available at an affordable price.</p>
+            </div>
+        </section>
+
+        <section id="contact" class="section contact-section">
+            <div class="container">
+                <h2 class="section-title">Get In Touch</h2>
+                <div class="contact-links">
+                    <a href="mailto:viptayam@gmail.com">viptayam@gmail.com</a>
+                    <a href="https://wa.me/201022065189" target="_blank">01022065189</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Tayam. All Rights Reserved.</p>
+        </div>
+    </footer>
+    
+    <!-- Subscription Sidebar -->
+    <div id="sidebar-overlay"></div>
+    <aside id="sidebar">
+        <button id="close-sidebar">&times;</button>
+        <h2 class="sidebar-title">Subscription Plans</h2>
+        
+        <!-- Weekly Plan -->
+        <div class="plan">
+            <h3>Weekly</h3>
+            <ul>
+                <li>✓ 15 Designs Included</li>
+                <li>✓ 65 EGP per Design</li>
+            </ul>
+            <p class="price">20 USD</p>
+            <button class="btn" id="subscribe-weekly">Subscribe Now</button>
+        </div>
+        
+        <!-- Monthly Plan -->
+        <div class="plan">
+            <h3>Monthly</h3>
+            <ul>
+                <li>✓ 50 Designs Included</li>
+                <li>✓ 100 EGP per Design</li>
+            </ul>
+            <p class="price">100 USD</p>
+            <button class="btn" id="subscribe-monthly">Subscribe Now</button>
+        </div>
+
+        <!-- Yearly Plan -->
+        <div class="plan">
+            <h3>Yearly</h3>
+            <ul>
+                <li>✓ 100 Designs per Year</li>
+                <li>✓ 200 EGP per Design</li>
+            </ul>
+            <p class="price"><s>400 USD</s> 350 USD</p>
+            <button class="btn" id="subscribe-yearly">Subscribe Now</button>
+        </div>
+    </aside>
+
+    <!-- React Component Script -->
+    <script type="text/babel">
+        const Portfolio = () => {
+            const designSamples = [
+                { name: "Burger", image: "Burger.jpg" },
+                { name: "Chips", image: "chips.png" },
+                { name: "Coffee", image: "coffe.jpg" },
+                { name: "Mango", image: "mango.jpg" },
+                { name: "Mango Splash", image: "mango2.jpg" },
+            ];
+
+            const handleContactClick = (designName) => {
+                const whatsAppNumber = "201022065189";
+                const message = `Hello Tayam, I'm interested in the "${designName}" design sample.`;
+                const encodedMessage = encodeURIComponent(message);
+                const whatsAppUrl = `https://wa.me/${whatsAppNumber}?text=${encodedMessage}`;
+                window.open(whatsAppUrl, '_blank');
+            };
+
+            return (
+                <div className="portfolio-grid">
+                    {designSamples.map(sample => (
+                        <div key={sample.name} className="portfolio-item">
+                            <img src={sample.image} alt={sample.name} />
+                            <div className="portfolio-content">
+                                <h3>{sample.name}</h3>
+                                <button className="btn" style={{width: 'auto', marginTop: 0}} onClick={() => handleContactClick(sample.name)}>
+                                    Contact
+                                </button>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            );
+        };
+
+        const container = document.getElementById('portfolio-root');
+        const root = ReactDOM.createRoot(container);
+        root.render(<Portfolio />);
+    </script>
+
+    <!-- Sidebar Control Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const openBtn = document.getElementById('open-sidebar');
+            const closeBtn = document.getElementById('close-sidebar');
+            const sidebarOverlay = document.getElementById('sidebar-overlay');
+            const body = document.body;
+
+            const openSidebar = () => body.classList.add('sidebar-open');
+            const closeSidebar = () => body.classList.remove('sidebar-open');
+
+            openBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                openSidebar();
+            });
+
+            closeBtn.addEventListener('click', closeSidebar);
+            sidebarOverlay.addEventListener('click', closeSidebar);
+
+            // Handle Subscription button clicks
+            const handleSubscriptionClick = (planName) => {
+                const whatsAppNumber = "201022065189";
+                const message = `Hello Tayam, I'm interested in subscribing to the "${planName}" plan.`;
+                const encodedMessage = encodeURIComponent(message);
+                const whatsAppUrl = `https://wa.me/${whatsAppNumber}?text=${encodedMessage}`;
+                window.open(whatsAppUrl, '_blank');
+            };
+
+            document.getElementById('subscribe-weekly').addEventListener('click', () => handleSubscriptionClick('Weekly'));
+            document.getElementById('subscribe-monthly').addEventListener('click', () => handleSubscriptionClick('Monthly'));
+            document.getElementById('subscribe-yearly').addEventListener('click', () => handleSubscriptionClick('Yearly'));
+        });
+    </script>
+</body>
+</html>
