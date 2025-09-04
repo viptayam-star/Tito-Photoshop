@@ -23,6 +23,7 @@
             --text-color: #2B2D42;
             --card-color: #FFFFFF;
             --border-color: #DEE2E6;
+            --accent-shadow-color: rgba(52, 152, 219, 0.3);
         }
 
         * {
@@ -63,12 +64,13 @@
 
         header .container {
             display: flex;
-            justify-content: space-between;
+            flex-direction: column;
             align-items: center;
+            gap: 1rem;
         }
 
         .logo img {
-            height: 50px; 
+            height: 60px; /* Made logo slightly bigger */
         }
 
         nav ul {
@@ -78,7 +80,7 @@
         }
 
         nav ul li {
-            margin-left: 25px;
+            margin: 0 15px; /* Replaced margin-left with horizontal margin */
         }
 
         nav a {
@@ -208,6 +210,23 @@
         .contact-links a:hover {
             color: var(--text-color);
         }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-section {
+            opacity: 0;
+            animation: fadeIn 0.8s ease-out forwards;
+            animation-fill-mode: forwards;
+        }
         
         footer {
             background: var(--secondary-color);
@@ -280,6 +299,12 @@
             border-radius: 10px;
             padding: 1.5rem;
             margin-bottom: 1.5rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .plan:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px var(--accent-shadow-color);
         }
         
         .plan h3 {
@@ -322,7 +347,7 @@
                 <ul>
                     <li><a href="#home">Home</a></li>
                     <li><a href="#portfolio">Portfolio</a></li>
-                    <li><a id="open-sidebar">Subscription</a></li>
+                    <li><a id="open-sidebar">Packages</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
             </nav>
@@ -372,8 +397,18 @@
     <div id="sidebar-overlay"></div>
     <aside id="sidebar">
         <button id="close-sidebar">&times;</button>
-        <h2 class="sidebar-title">Subscription Plans</h2>
+        <h2 class="sidebar-title">Our Packages</h2>
         
+        <!-- Single Ad Plan -->
+        <div class="plan">
+            <h3>Single Ad</h3>
+            <ul>
+                <li>✓ 1 High-Quality Design</li>
+                <li>✓ Perfect for a specific campaign or event</li>
+            </ul>
+            <button class="btn" id="subscribe-single">Request a Quote</button>
+        </div>
+
         <!-- Weekly Plan -->
         <div class="plan">
             <h3>Weekly</h3>
@@ -381,8 +416,7 @@
                 <li>✓ 15 Designs Included</li>
                 <li>✓ 65 EGP per Design</li>
             </ul>
-            <p class="price">20 USD</p>
-            <button class="btn" id="subscribe-weekly">Subscribe Now</button>
+            <button class="btn" id="subscribe-weekly">Request a Quote</button>
         </div>
         
         <!-- Monthly Plan -->
@@ -392,8 +426,7 @@
                 <li>✓ 50 Designs Included</li>
                 <li>✓ 100 EGP per Design</li>
             </ul>
-            <p class="price">100 USD</p>
-            <button class="btn" id="subscribe-monthly">Subscribe Now</button>
+            <button class="btn" id="subscribe-monthly">Request a Quote</button>
         </div>
 
         <!-- Yearly Plan -->
@@ -403,8 +436,7 @@
                 <li>✓ 100 Designs per Year</li>
                 <li>✓ 200 EGP per Design</li>
             </ul>
-            <p class="price"><s>400 USD</s> 350 USD</p>
-            <button class="btn" id="subscribe-yearly">Subscribe Now</button>
+            <button class="btn" id="subscribe-yearly">Request a Quote</button>
         </div>
     </aside>
 
@@ -471,15 +503,33 @@
             // Handle Subscription button clicks
             const handleSubscriptionClick = (planName) => {
                 const whatsAppNumber = "201022065189";
-                const message = `Hello Tayam, I'm interested in subscribing to the "${planName}" plan.`;
+                const message = `Hello Tayam, I'm interested in the "${planName}" package. Could you please provide more details and pricing?`;
                 const encodedMessage = encodeURIComponent(message);
                 const whatsAppUrl = `https://wa.me/${whatsAppNumber}?text=${encodedMessage}`;
                 window.open(whatsAppUrl, '_blank');
             };
 
+            document.getElementById('subscribe-single').addEventListener('click', () => handleSubscriptionClick('Single Ad'));
             document.getElementById('subscribe-weekly').addEventListener('click', () => handleSubscriptionClick('Weekly'));
             document.getElementById('subscribe-monthly').addEventListener('click', () => handleSubscriptionClick('Monthly'));
             document.getElementById('subscribe-yearly').addEventListener('click', () => handleSubscriptionClick('Yearly'));
+
+            // Animation on scroll
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in-section');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+            const sectionsToAnimate = document.querySelectorAll('.section');
+            sectionsToAnimate.forEach(section => {
+                observer.observe(section);
+            });
         });
     </script>
 </body>
