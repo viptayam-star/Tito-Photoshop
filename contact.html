@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | Tito Photoshop</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body data-lang="en">
+
+    <header>
+        <div class="container">
+            <nav>
+                <ul>
+                    <li><a href="home.html"><span data-lang-key="en">Home</span><span data-lang-key="ar">الرئيسية</span></a></li>
+                    <li><a href="about.html"><span data-lang-key="en">About Me</span><span data-lang-key="ar">عني</span></a></li>
+                    <li><a href="portfolio.html"><span data-lang-key="en">Portfolio</span><span data-lang-key="ar">أعمالي</span></a></li>
+                </ul>
+            </nav>
+            <div class="logo">
+                <a href="home.html"><img src="logo.png" alt="Tito Photoshop Logo"></a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="services.html"><span data-lang-key="en">Services</span><span data-lang-key="ar">الخدمات</span></a></li>
+                    <li><a href="contact.html" class="active"><span data-lang-key="en">Contact</span><span data-lang-key="ar">تواصل</span></a></li>
+                     <li>
+                        <div class="lang-switcher">
+                            <button id="lang-en" class="active">EN</button>
+                            <button id="lang-ar">AR</button>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="theme-switch-wrapper">
+                            <label class="theme-switch" for="dark-mode-toggle">
+                                <input type="checkbox" id="dark-mode-toggle" />
+                                <div class="slider round"></div>
+                            </label>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="contact" class="section">
+            <div class="container">
+                <h2 class="section-title">
+                    <span data-lang-key="en">Get In Touch</span>
+                    <span data-lang-key="ar">تواصل معي</span>
+                </h2>
+                <div class="contact-wrapper">
+                    <div class="contact-form">
+                        <form>
+                            <div class="form-group">
+                                <input type="text" name="name" placeholder="Name">
+                            </div>
+                            <div class="form-group">
+                                <input type="email" name="email" placeholder="Email">
+                            </div>
+                            <div class="form-group">
+                                <textarea name="message" placeholder="Message"></textarea>
+                            </div>
+                            <button type="submit" class="btn"><span data-lang-key="en">Send Message</span><span data-lang-key="ar">أرسل الرسالة</span></button>
+                        </form>
+                    </div>
+                    <div class="contact-info">
+                        <h3><span data-lang-key="en">Contact Information</span><span data-lang-key="ar">معلومات التواصل</span></h3>
+                        <p><span data-lang-key="en">Feel free to reach out to me through any of the following channels:</span><span data-lang-key="ar">لا تتردد في التواصل معي عبر أي من القنوات التالية:</span></p>
+                        <ul>
+                            <li><a href="https://wa.me/201022065189" target="_blank">WhatsApp</a></li>
+                            <li><a href="mailto:viptayam@gmail.com">Email</a></li>
+                            <li><a href="#" target="_blank">Behance</a></li>
+                            <li><a href="#" target="_blank">Instagram</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Tito Photoshop. <span data-lang-key="en">All Rights Reserved.</span><span data-lang-key="ar">جميع الحقوق محفوظة.</span></p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

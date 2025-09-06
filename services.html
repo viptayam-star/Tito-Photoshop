@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services & Pricing | Tito Photoshop</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body data-lang="en">
+
+    <header>
+        <div class="container">
+            <nav>
+                <ul>
+                    <li><a href="home.html"><span data-lang-key="en">Home</span><span data-lang-key="ar">الرئيسية</span></a></li>
+                    <li><a href="about.html"><span data-lang-key="en">About Me</span><span data-lang-key="ar">عني</span></a></li>
+                    <li><a href="portfolio.html"><span data-lang-key="en">Portfolio</span><span data-lang-key="ar">أعمالي</span></a></li>
+                </ul>
+            </nav>
+            <div class="logo">
+                <a href="home.html"><img src="logo.png" alt="Tito Photoshop Logo"></a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="services.html" class="active"><span data-lang-key="en">Services</span><span data-lang-key="ar">الخدمات</span></a></li>
+                    <li><a href="contact.html"><span data-lang-key="en">Contact</span><span data-lang-key="ar">تواصل</span></a></li>
+                     <li>
+                        <div class="lang-switcher">
+                            <button id="lang-en" class="active">EN</button>
+                            <button id="lang-ar">AR</button>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="theme-switch-wrapper">
+                            <label class="theme-switch" for="dark-mode-toggle">
+                                <input type="checkbox" id="dark-mode-toggle" />
+                                <div class="slider round"></div>
+                            </label>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="services" class="section">
+            <div class="container">
+                <h2 class="section-title"><span data-lang-key="en">Packages</span><span data-lang-key="ar">الباقات</span></h2>
+
+                <div class="plan">
+                    <h3><span data-lang-key="en">Single Ad</span><span data-lang-key="ar">إعلان واحد</span></h3>
+                    <ul>
+                        <li><span data-lang-key="en">✓ 1 Design</span><span data-lang-key="ar">✓ تصميم واحد</span></li>
+                         <li><span data-lang-key="en">Perfect for a quick promotion.</span><span data-lang-key="ar">مثالي لحملة إعلانية سريعة.</span></li>
+                    </ul>
+                    <p class="price">250 <span data-lang-key="en">EGP</span><span data-lang-key="ar">جنيه</span></p>
+                    <button class="btn" id="subscribe-single"><span data-lang-key="en">Get It Now</span><span data-lang-key="ar">اطلبه الآن</span></button>
+                </div>
+
+                <div class="plan">
+                    <h3><span data-lang-key="en">Weekly</span><span data-lang-key="ar">الأسبوعية</span></h3>
+                    <ul>
+                        <li><span data-lang-key="en">✓ 15 Designs Included</span><span data-lang-key="ar">✓ تشمل 15 تصميم</span></li>
+                        <li><span data-lang-key="en">✓ 65 EGP per Design</span><span data-lang-key="ar">✓ 65 جنيه للتصميم</span></li>
+                    </ul>
+                    <p class="price">950 <span data-lang-key="en">EGP</span><span data-lang-key="ar">جنيه</span></p>
+                    <button class="btn" id="subscribe-weekly"><span data-lang-key="en">Subscribe Now</span><span data-lang-key="ar">اشترك الآن</span></button>
+                </div>
+
+                <div class="plan">
+                    <h3><span data-lang-key="en">Monthly</span><span data-lang-key="ar">الشهرية</span></h3>
+                    <ul>
+                        <li><span data-lang-key="en">✓ 50 Designs Included</span><span data-lang-key="ar">✓ تشمل 50 تصميم</span></li>
+                        <li><span data-lang-key="en">✓ 100 EGP per Design</span><span data-lang-key="ar">✓ 100 جنيه للتصميم</span></li>
+                    </ul>
+                    <p class="price">4,700 <span data-lang-key="en">EGP</span><span data-lang-key="ar">جنيه</span></p>
+                    <button class="btn" id="subscribe-monthly"><span data-lang-key="en">Subscribe Now</span><span data-lang-key="ar">اشترك الآن</span></button>
+                </div>
+
+                <div class="plan">
+                    <h3><span data-lang-key="en">Yearly</span><span data-lang-key="ar">السنوية</span></h3>
+                    <ul>
+                        <li><span data-lang-key="en">✓ 100 Designs per Year</span><span data-lang-key="ar">✓ 100 تصميم سنويًا</span></li>
+                        <li><span data-lang-key="en">✓ 200 EGP per Design</span><span data-lang-key="ar">✓ 200 جنيه للتصميم</span></li>
+                    </ul>
+                    <p class="price"><s>18,800</s> 16,500 <span data-lang-key="en">EGP</span><span data-lang-key="ar">جنيه</span></p>
+                    <button class="btn" id="subscribe-yearly"><span data-lang-key="en">Subscribe Now</span><span data-lang-key="ar">اشترك الآن</span></button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Tito Photoshop. <span data-lang-key="en">All Rights Reserved.</span><span data-lang-key="ar">جميع الحقوق محفوظة.</span></p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
