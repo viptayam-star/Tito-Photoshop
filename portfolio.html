@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | Tito Photoshop</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- React and Babel Scripts -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body data-lang="en">
+
+    <header>
+        <div class="container">
+            <nav>
+                <ul>
+                    <li><a href="home.html"><span data-lang-key="en">Home</span><span data-lang-key="ar">الرئيسية</span></a></li>
+                    <li><a href="about.html"><span data-lang-key="en">About Me</span><span data-lang-key="ar">عني</span></a></li>
+                    <li><a href="portfolio.html" class="active"><span data-lang-key="en">Portfolio</span><span data-lang-key="ar">أعمالي</span></a></li>
+                </ul>
+            </nav>
+            <div class="logo">
+                <a href="home.html"><img src="logo.png" alt="Tito Photoshop Logo"></a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="services.html"><span data-lang-key="en">Services</span><span data-lang-key="ar">الخدمات</span></a></li>
+                    <li><a href="contact.html"><span data-lang-key="en">Contact</span><span data-lang-key="ar">تواصل</span></a></li>
+                     <li>
+                        <div class="lang-switcher">
+                            <button id="lang-en" class="active">EN</button>
+                            <button id="lang-ar">AR</button>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="theme-switch-wrapper">
+                            <label class="theme-switch" for="dark-mode-toggle">
+                                <input type="checkbox" id="dark-mode-toggle" />
+                                <div class="slider round"></div>
+                            </label>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="portfolio" class="section">
+            <div class="container">
+                <h2 class="section-title">
+                    <span data-lang-key="en">My Work</span>
+                    <span data-lang-key="ar">أعمالي</span>
+                </h2>
+                <div id="portfolio-root"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Tito Photoshop. <span data-lang-key="en">All Rights Reserved.</span><span data-lang-key="ar">جميع الحقوق محفوظة.</span></p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script type="text/babel">
+        const Portfolio = () => {
+            const designSamples = [
+                { name: "Burger", image: "Burger.jpg" },
+                { name: "Chips", image: "chips.png" },
+                { name: "Coffee", image: "coffe.jpg" },
+                { name: "Mango", image: "mango.jpg" },
+                { name: "Mango Splash", image: "mango2.jpg" },
+            ];
+
+            const currentLang = document.body.getAttribute('data-lang') || 'en';
+
+            const handleContactClick = (designName) => {
+                const whatsAppNumber = "201022065189";
+                const message = currentLang === 'ar'
+                    ? `مرحبًا Tito Photoshop، أنا مهتم بنموذج تصميم "${designName}".`
+                    : `Hello Tito Photoshop, I'm interested in the "${designName}" design sample.`;
+                const encodedMessage = encodeURIComponent(message);
+                const whatsAppUrl = `https://wa.me/${whatsAppNumber}?text=${encodedMessage}`;
+                window.open(whatsAppUrl, '_blank');
+            };
+
+            const contactText = currentLang === 'ar' ? 'تواصل' : 'Contact';
+
+            return (
+                <div className="portfolio-grid">
+                    {designSamples.map(sample => (
+                        <div key={sample.name} className="portfolio-item">
+                            <img src={sample.image} alt={sample.name} />
+                            <div className="portfolio-content">
+                                <h3>{sample.name}</h3>
+                                <button className="btn" style={{width: 'auto', marginTop: 0}} onClick={() => handleContactClick(sample.name)}>
+                                    {contactText}
+                                </button>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            );
+        };
+
+        const portfolioRoot = document.getElementById('portfolio-root');
+        if (portfolioRoot) {
+            const root = ReactDOM.createRoot(portfolioRoot);
+            const renderPortfolio = () => {
+                 root.render(<Portfolio />);
+            }
+            renderPortfolio();
+        }
+    </script>
+</body>
+</html>
